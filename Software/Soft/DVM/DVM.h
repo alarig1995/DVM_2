@@ -33,6 +33,7 @@
 
 #define AD7792_MODE_REG 0x08  // Адрес регистра Mode
 #define AD7792_CONF_REG 0x10  // Адрес регистра Configuration
+#define AD7792_DATA_REG 0x58  // Адрес регистра Data
 
 #define AD7792_DELAY_FOR_DATA 10  // Задержка между измерениями данных
 

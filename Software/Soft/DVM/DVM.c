@@ -283,7 +283,7 @@ u16 Ad7792GetData(void)
 	u8 b2;				            // Переменная для хранения младшего байта
 	
 	while(BitIsSet(SPI_PORT, SPI_PIN_MISO));	// Ждем когда данные подготовятся
-	SpiCode = SpiReadByte(0x58);				// Заходим в DATA REG
+	SpiCode = SpiReadByte(AD7792_DATA_REG);		// Заходим в DATA REG
 	b1 = SpiReadByte(0xFF);						// Получаем старший байт данных
 	b2 = SpiReadByte(0xFF);						// Младший байт данных
 	b3 = (b2 | (b1 << 8));						// Формируем байт данных
