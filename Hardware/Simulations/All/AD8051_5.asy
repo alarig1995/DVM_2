@@ -1,0 +1,28 @@
+Version 4
+SymbolType BLOCK
+RECTANGLE Normal 80 48 -64 -48
+TEXT -41 16 Left 2 IN+
+TEXT -40 -15 Left 2 IN-
+TEXT -1 0 Left 2 OUT
+TEXT -4 -31 Left 2 VDD
+TEXT 0 30 Left 2 VSS
+WINDOW 0 2 -58 Bottom 2
+WINDOW 3 12 53 Top 2
+SYMATTR Prefix X
+SYMATTR Value AD8051_5
+SYMATTR ModelFile C:\Users\Semenov_DM\Desktop\All\Library\ad8051_5.cir
+PIN -64 16 LEFT 8
+PINATTR PinName 1
+PINATTR SpiceOrder 1
+PIN -64 -16 LEFT 8
+PINATTR PinName 2
+PINATTR SpiceOrder 2
+PIN 80 -32 RIGHT 8
+PINATTR PinName 99
+PINATTR SpiceOrder 3
+PIN 80 32 RIGHT 8
+PINATTR PinName 50
+PINATTR SpiceOrder 4
+PIN 80 0 RIGHT 8
+PINATTR PinName 45
+PINATTR SpiceOrder 5

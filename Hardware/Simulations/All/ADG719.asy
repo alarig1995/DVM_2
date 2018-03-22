@@ -1,0 +1,32 @@
+Version 4
+SymbolType BLOCK
+RECTANGLE Normal 96 49 -97 -64
+TEXT -63 -48 Left 2 IN
+TEXT -66 -15 Left 2 VDD
+TEXT -63 16 Left 2 GND
+TEXT 38 -49 Left 2 S2
+TEXT 39 -15 Left 2 D
+TEXT 39 17 Left 2 S1
+WINDOW 0 -2 -71 Bottom 2
+WINDOW 3 0 56 Top 2
+SYMATTR Prefix X
+SYMATTR Value ADG719
+SYMATTR ModelFile C:\Users\Artemka\YandexDisk\Work\Projects_2018\DVM\Tests\All\Library\adg719.cir
+PIN -96 -48 LEFT 8
+PINATTR PinName 1
+PINATTR SpiceOrder 1
+PIN -96 -16 LEFT 8
+PINATTR PinName 2
+PINATTR SpiceOrder 2
+PIN -96 16 LEFT 8
+PINATTR PinName 3
+PINATTR SpiceOrder 3
+PIN 96 16 RIGHT 8
+PINATTR PinName 4
+PINATTR SpiceOrder 4
+PIN 96 -16 RIGHT 8
+PINATTR PinName 5
+PINATTR SpiceOrder 5
+PIN 96 -48 RIGHT 8
+PINATTR PinName 6
+PINATTR SpiceOrder 6

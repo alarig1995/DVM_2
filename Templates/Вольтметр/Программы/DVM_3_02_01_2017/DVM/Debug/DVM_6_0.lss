@@ -1,0 +1,1098 @@
+
+DVM_6_0.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000048  00800100  000005b6  0000064a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000005b6  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000022  00800148  00800148  00000692  2**0
+                  ALLOC
+  3 .stab         00000a38  00000000  00000000  00000694  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      0000014d  00000000  00000000  000010cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 000000e0  00000000  00000000  00001220  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000b70  00000000  00000000  00001300  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000029c  00000000  00000000  00001e70  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000614  00000000  00000000  0000210c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000001d0  00000000  00000000  00002720  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000002a9  00000000  00000000  000028f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000457  00000000  00000000  00002b99  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	19 c0       	rjmp	.+50     	; 0x34 <__ctors_end>
+   2:	33 c0       	rjmp	.+102    	; 0x6a <__bad_interrupt>
+   4:	32 c0       	rjmp	.+100    	; 0x6a <__bad_interrupt>
+   6:	31 c0       	rjmp	.+98     	; 0x6a <__bad_interrupt>
+   8:	30 c0       	rjmp	.+96     	; 0x6a <__bad_interrupt>
+   a:	2f c0       	rjmp	.+94     	; 0x6a <__bad_interrupt>
+   c:	2e c0       	rjmp	.+92     	; 0x6a <__bad_interrupt>
+   e:	2d c0       	rjmp	.+90     	; 0x6a <__bad_interrupt>
+  10:	2c c0       	rjmp	.+88     	; 0x6a <__bad_interrupt>
+  12:	2b c0       	rjmp	.+86     	; 0x6a <__bad_interrupt>
+  14:	2a c0       	rjmp	.+84     	; 0x6a <__bad_interrupt>
+  16:	29 c0       	rjmp	.+82     	; 0x6a <__bad_interrupt>
+  18:	28 c0       	rjmp	.+80     	; 0x6a <__bad_interrupt>
+  1a:	27 c0       	rjmp	.+78     	; 0x6a <__bad_interrupt>
+  1c:	26 c0       	rjmp	.+76     	; 0x6a <__bad_interrupt>
+  1e:	25 c0       	rjmp	.+74     	; 0x6a <__bad_interrupt>
+  20:	24 c0       	rjmp	.+72     	; 0x6a <__bad_interrupt>
+  22:	23 c0       	rjmp	.+70     	; 0x6a <__bad_interrupt>
+  24:	22 c0       	rjmp	.+68     	; 0x6a <__bad_interrupt>
+  26:	21 c0       	rjmp	.+66     	; 0x6a <__bad_interrupt>
+  28:	20 c0       	rjmp	.+64     	; 0x6a <__bad_interrupt>
+  2a:	1f c0       	rjmp	.+62     	; 0x6a <__bad_interrupt>
+  2c:	1e c0       	rjmp	.+60     	; 0x6a <__bad_interrupt>
+  2e:	1d c0       	rjmp	.+58     	; 0x6a <__bad_interrupt>
+  30:	1c c0       	rjmp	.+56     	; 0x6a <__bad_interrupt>
+  32:	1b c0       	rjmp	.+54     	; 0x6a <__bad_interrupt>
+
+00000034 <__ctors_end>:
+  34:	11 24       	eor	r1, r1
+  36:	1f be       	out	0x3f, r1	; 63
+  38:	cf ef       	ldi	r28, 0xFF	; 255
+  3a:	d2 e0       	ldi	r29, 0x02	; 2
+  3c:	de bf       	out	0x3e, r29	; 62
+  3e:	cd bf       	out	0x3d, r28	; 61
+
+00000040 <__do_copy_data>:
+  40:	11 e0       	ldi	r17, 0x01	; 1
+  42:	a0 e0       	ldi	r26, 0x00	; 0
+  44:	b1 e0       	ldi	r27, 0x01	; 1
+  46:	e6 eb       	ldi	r30, 0xB6	; 182
+  48:	f5 e0       	ldi	r31, 0x05	; 5
+  4a:	02 c0       	rjmp	.+4      	; 0x50 <__do_copy_data+0x10>
+  4c:	05 90       	lpm	r0, Z+
+  4e:	0d 92       	st	X+, r0
+  50:	a8 34       	cpi	r26, 0x48	; 72
+  52:	b1 07       	cpc	r27, r17
+  54:	d9 f7       	brne	.-10     	; 0x4c <__do_copy_data+0xc>
+
+00000056 <__do_clear_bss>:
+  56:	11 e0       	ldi	r17, 0x01	; 1
+  58:	a8 e4       	ldi	r26, 0x48	; 72
+  5a:	b1 e0       	ldi	r27, 0x01	; 1
+  5c:	01 c0       	rjmp	.+2      	; 0x60 <.do_clear_bss_start>
+
+0000005e <.do_clear_bss_loop>:
+  5e:	1d 92       	st	X+, r1
+
+00000060 <.do_clear_bss_start>:
+  60:	aa 36       	cpi	r26, 0x6A	; 106
+  62:	b1 07       	cpc	r27, r17
+  64:	e1 f7       	brne	.-8      	; 0x5e <.do_clear_bss_loop>
+  66:	fb d1       	rcall	.+1014   	; 0x45e <main>
+  68:	a4 c2       	rjmp	.+1352   	; 0x5b2 <_exit>
+
+0000006a <__bad_interrupt>:
+  6a:	ca cf       	rjmp	.-108    	; 0x0 <__vectors>
+
+0000006c <SetRangeDc>:
+	return res;
+};
+
+void SetRangeDc(u8 ran)
+{
+	switch(ran)
+  6c:	82 30       	cpi	r24, 0x02	; 2
+  6e:	a1 f0       	breq	.+40     	; 0x98 <SetRangeDc+0x2c>
+  70:	83 30       	cpi	r24, 0x03	; 3
+  72:	28 f4       	brcc	.+10     	; 0x7e <SetRangeDc+0x12>
+  74:	88 23       	and	r24, r24
+  76:	41 f0       	breq	.+16     	; 0x88 <SetRangeDc+0x1c>
+  78:	81 30       	cpi	r24, 0x01	; 1
+  7a:	d1 f4       	brne	.+52     	; 0xb0 <SetRangeDc+0x44>
+  7c:	09 c0       	rjmp	.+18     	; 0x90 <SetRangeDc+0x24>
+  7e:	83 30       	cpi	r24, 0x03	; 3
+  80:	79 f0       	breq	.+30     	; 0xa0 <SetRangeDc+0x34>
+  82:	84 30       	cpi	r24, 0x04	; 4
+  84:	a9 f4       	brne	.+42     	; 0xb0 <SetRangeDc+0x44>
+  86:	10 c0       	rjmp	.+32     	; 0xa8 <SetRangeDc+0x3c>
+	{
+		case RANGE_LOW:									// EN=0, A1A0=00
+			ClearBit(MUX_DC_ADDRESS_PORT, MUX_DC_ADDRESS_BIT_A0);
+  88:	5d 98       	cbi	0x0b, 5	; 11
+			ClearBit(MUX_DC_ADDRESS_PORT, MUX_DC_ADDRESS_BIT_A1);
+  8a:	5e 98       	cbi	0x0b, 6	; 11
+			ClearBit(MUX_DC_EN_PORT, MUX_DC_EN_BIT);
+  8c:	2f 98       	cbi	0x05, 7	; 5
+		break;
+  8e:	08 95       	ret
+		case RANGE_NEXT1:								// EN=1, A1A0=11
+			SetBit(MUX_DC_ADDRESS_PORT, MUX_DC_ADDRESS_BIT_A0);
+  90:	5d 9a       	sbi	0x0b, 5	; 11
+			SetBit(MUX_DC_ADDRESS_PORT, MUX_DC_ADDRESS_BIT_A1);
+  92:	5e 9a       	sbi	0x0b, 6	; 11
+			SetBit(MUX_DC_EN_PORT, MUX_DC_EN_BIT);
+  94:	2f 9a       	sbi	0x05, 7	; 5
+		break;
+  96:	08 95       	ret
+		case RANGE_NEXT2:								// EN=1, A1A0=10
+			ClearBit(MUX_DC_ADDRESS_PORT, MUX_DC_ADDRESS_BIT_A0);
+  98:	5d 98       	cbi	0x0b, 5	; 11
+			SetBit(MUX_DC_ADDRESS_PORT, MUX_DC_ADDRESS_BIT_A1);
+  9a:	5e 9a       	sbi	0x0b, 6	; 11
+			SetBit(MUX_DC_EN_PORT, MUX_DC_EN_BIT);
+  9c:	2f 9a       	sbi	0x05, 7	; 5
+		break;
+  9e:	08 95       	ret
+		case RANGE_NEXT3:								// EN=1, A1A0=01
+			SetBit(MUX_DC_ADDRESS_PORT, MUX_DC_ADDRESS_BIT_A0);
+  a0:	5d 9a       	sbi	0x0b, 5	; 11
+			ClearBit(MUX_DC_ADDRESS_PORT, MUX_DC_ADDRESS_BIT_A1);
+  a2:	5e 98       	cbi	0x0b, 6	; 11
+			SetBit(MUX_DC_EN_PORT, MUX_DC_EN_BIT);
+  a4:	2f 9a       	sbi	0x05, 7	; 5
+		break;
+  a6:	08 95       	ret
+		case RANGE_MAX:									// EN=1, A1A0=00
+			ClearBit(MUX_DC_ADDRESS_PORT, MUX_DC_ADDRESS_BIT_A0);
+  a8:	5d 98       	cbi	0x0b, 5	; 11
+			ClearBit(MUX_DC_ADDRESS_PORT, MUX_DC_ADDRESS_BIT_A1);
+  aa:	5e 98       	cbi	0x0b, 6	; 11
+			SetBit(MUX_DC_EN_PORT, MUX_DC_EN_BIT);
+  ac:	2f 9a       	sbi	0x05, 7	; 5
+		break;
+  ae:	08 95       	ret
+		default:										// EN=0, A1A0=00
+			ClearBit(MUX_DC_ADDRESS_PORT, MUX_DC_ADDRESS_BIT_A0);
+  b0:	5d 98       	cbi	0x0b, 5	; 11
+			ClearBit(MUX_DC_ADDRESS_PORT, MUX_DC_ADDRESS_BIT_A1);
+  b2:	5e 98       	cbi	0x0b, 6	; 11
+			ClearBit(MUX_DC_EN_PORT, MUX_DC_EN_BIT);
+  b4:	2f 98       	cbi	0x05, 7	; 5
+  b6:	08 95       	ret
+
+000000b8 <NumberToString>:
+		break;
+	};
+};
+
+void NumberToString(s32 vlt, u8 buff[])
+{
+  b8:	cf 92       	push	r12
+  ba:	df 92       	push	r13
+  bc:	ef 92       	push	r14
+  be:	ff 92       	push	r15
+  c0:	cf 93       	push	r28
+  c2:	df 93       	push	r29
+  c4:	6b 01       	movw	r12, r22
+  c6:	7c 01       	movw	r14, r24
+  c8:	ea 01       	movw	r28, r20
+	s32 nmbr;
+	nmbr = labs(vlt) + 1000000000;  
+  ca:	dc 01       	movw	r26, r24
+  cc:	cb 01       	movw	r24, r22
+  ce:	ff 20       	and	r15, r15
+  d0:	3c f4       	brge	.+14     	; 0xe0 <NumberToString+0x28>
+  d2:	88 27       	eor	r24, r24
+  d4:	99 27       	eor	r25, r25
+  d6:	dc 01       	movw	r26, r24
+  d8:	8c 19       	sub	r24, r12
+  da:	9d 09       	sbc	r25, r13
+  dc:	ae 09       	sbc	r26, r14
+  de:	bf 09       	sbc	r27, r15
+  e0:	80 50       	subi	r24, 0x00	; 0
+  e2:	96 43       	sbci	r25, 0x36	; 54
+  e4:	a5 46       	sbci	r26, 0x65	; 101
+  e6:	b4 4c       	sbci	r27, 0xC4	; 196
+	ltoa(nmbr, buff, 10);
+  e8:	bc 01       	movw	r22, r24
+  ea:	cd 01       	movw	r24, r26
+  ec:	ae 01       	movw	r20, r28
+  ee:	2a e0       	ldi	r18, 0x0A	; 10
+  f0:	30 e0       	ldi	r19, 0x00	; 0
+  f2:	1d d2       	rcall	.+1082   	; 0x52e <ltoa>
+	if (vlt >= 0)
+  f4:	ff 20       	and	r15, r15
+  f6:	1c f0       	brlt	.+6      	; 0xfe <NumberToString+0x46>
+	{
+		buff[0] = '+';
+  f8:	8b e2       	ldi	r24, 0x2B	; 43
+  fa:	88 83       	st	Y, r24
+  fc:	02 c0       	rjmp	.+4      	; 0x102 <NumberToString+0x4a>
+	}
+	else
+	{
+		buff[0] = '-';
+  fe:	8d e2       	ldi	r24, 0x2D	; 45
+ 100:	88 83       	st	Y, r24
+	}
+};
+ 102:	df 91       	pop	r29
+ 104:	cf 91       	pop	r28
+ 106:	ff 90       	pop	r15
+ 108:	ef 90       	pop	r14
+ 10a:	df 90       	pop	r13
+ 10c:	cf 90       	pop	r12
+ 10e:	08 95       	ret
+
+00000110 <UartSendByte>:
+	};
+};
+
+void UartSendByte (u8 byt)			
+{
+	while (BitIsClear(UCSR0A, UDRE0))	//	Выйдем из цикла когда UDR будет пуст
+ 110:	e0 ec       	ldi	r30, 0xC0	; 192
+ 112:	f0 e0       	ldi	r31, 0x00	; 0
+ 114:	90 81       	ld	r25, Z
+ 116:	95 ff       	sbrs	r25, 5
+ 118:	fd cf       	rjmp	.-6      	; 0x114 <UartSendByte+0x4>
+	{};
+	UDR0 = byt;
+ 11a:	80 93 c6 00 	sts	0x00C6, r24
+};
+ 11e:	08 95       	ret
+
+00000120 <UartlSendString>:
+	UartSendNewLine();
+	
+};
+
+void UartlSendString(u8* str)
+{
+ 120:	cf 93       	push	r28
+ 122:	df 93       	push	r29
+ 124:	ec 01       	movw	r28, r24
+	while ((*str) != '\0')		//	Пока не встретили конец строки
+ 126:	88 81       	ld	r24, Y
+ 128:	88 23       	and	r24, r24
+ 12a:	29 f0       	breq	.+10     	; 0x136 <UartlSendString+0x16>
+	UartlSendString(UartString);
+	UartSendNewLine();
+	
+};
+
+void UartlSendString(u8* str)
+ 12c:	21 96       	adiw	r28, 0x01	; 1
+{
+	while ((*str) != '\0')		//	Пока не встретили конец строки
+	{
+		UartSendByte((*str));	//	Отправляем байт по Uart
+ 12e:	f0 df       	rcall	.-32     	; 0x110 <UartSendByte>
+	
+};
+
+void UartlSendString(u8* str)
+{
+	while ((*str) != '\0')		//	Пока не встретили конец строки
+ 130:	89 91       	ld	r24, Y+
+ 132:	88 23       	and	r24, r24
+ 134:	e1 f7       	brne	.-8      	; 0x12e <UartlSendString+0xe>
+	{
+		UartSendByte((*str));	//	Отправляем байт по Uart
+		str++;					//	Увеличеваем значение указателя
+	};
+};
+ 136:	df 91       	pop	r29
+ 138:	cf 91       	pop	r28
+ 13a:	08 95       	ret
+
+0000013c <UartSendNewLine>:
+	UDR0 = byt;
+};
+
+void UartSendNewLine (void) 
+{
+	UartSendByte(0x0A);
+ 13c:	8a e0       	ldi	r24, 0x0A	; 10
+ 13e:	e8 df       	rcall	.-48     	; 0x110 <UartSendByte>
+	UartSendByte(0x0D);
+ 140:	8d e0       	ldi	r24, 0x0D	; 13
+ 142:	e6 df       	rcall	.-52     	; 0x110 <UartSendByte>
+}
+ 144:	08 95       	ret
+
+00000146 <Comm>:
+		buff[0] = '-';
+	}
+};
+
+void Comm (void)   
+{
+ 146:	cf 93       	push	r28
+ 148:	df 93       	push	r29
+	memset(UartString, 0, UART_STRING_SIZE);
+ 14a:	c2 e5       	ldi	r28, 0x52	; 82
+ 14c:	d1 e0       	ldi	r29, 0x01	; 1
+ 14e:	88 e1       	ldi	r24, 0x18	; 24
+ 150:	fe 01       	movw	r30, r28
+ 152:	11 92       	st	Z+, r1
+ 154:	8a 95       	dec	r24
+ 156:	e9 f7       	brne	.-6      	; 0x152 <Comm+0xc>
+	NumberToString(Voltage_uV_Dc, UartString);
+ 158:	60 91 49 01 	lds	r22, 0x0149
+ 15c:	70 91 4a 01 	lds	r23, 0x014A
+ 160:	80 91 4b 01 	lds	r24, 0x014B
+ 164:	90 91 4c 01 	lds	r25, 0x014C
+ 168:	ae 01       	movw	r20, r28
+ 16a:	a6 df       	rcall	.-180    	; 0xb8 <NumberToString>
+	UartlSendString("Udvm[uV] = ");
+ 16c:	80 e0       	ldi	r24, 0x00	; 0
+ 16e:	91 e0       	ldi	r25, 0x01	; 1
+ 170:	d7 df       	rcall	.-82     	; 0x120 <UartlSendString>
+	UartlSendString(UartString);
+ 172:	ce 01       	movw	r24, r28
+ 174:	d5 df       	rcall	.-86     	; 0x120 <UartlSendString>
+	UartSendNewLine();
+ 176:	e2 df       	rcall	.-60     	; 0x13c <UartSendNewLine>
+	
+};
+ 178:	df 91       	pop	r29
+ 17a:	cf 91       	pop	r28
+ 17c:	08 95       	ret
+
+0000017e <UartInit>:
+	UartSendByte(0x0D);
+}
+
+void UartInit (void)			
+{
+	UBRR0H = 0;	   	//	Задаем скорость перадчи по UART (9600 baud)
+ 17e:	10 92 c5 00 	sts	0x00C5, r1
+	UBRR0L = 51;
+ 182:	83 e3       	ldi	r24, 0x33	; 51
+ 184:	80 93 c4 00 	sts	0x00C4, r24
+	UCSR0A = 0x00; 	// 8 битовая посылка, 1 стоп бит,
+ 188:	10 92 c0 00 	sts	0x00C0, r1
+	UCSR0B = 0x18; 	// контроля четности нет
+ 18c:	88 e1       	ldi	r24, 0x18	; 24
+ 18e:	80 93 c1 00 	sts	0x00C1, r24
+	UCSR0C = 0x86;
+ 192:	86 e8       	ldi	r24, 0x86	; 134
+ 194:	80 93 c2 00 	sts	0x00C2, r24
+};
+ 198:	08 95       	ret
+
+0000019a <PortsInit>:
+
+void PortsInit(void) 
+{
+	SetBit(MUX_DC_EN_DDR, MUX_DC_EN_BIT);			// EN 
+ 19a:	27 9a       	sbi	0x04, 7	; 4
+	SetBit(MUX_DC_ADDRESS_DDR, MUX_DC_ADDRESS_BIT_A0);	// A0 
+ 19c:	55 9a       	sbi	0x0a, 5	; 10
+	SetBit(MUX_DC_ADDRESS_DDR, MUX_DC_ADDRESS_BIT_A1);	// A1 
+ 19e:	56 9a       	sbi	0x0a, 6	; 10
+}
+ 1a0:	08 95       	ret
+
+000001a2 <SpiInitMaster>:
+
+void SpiInitMaster(void) 	
+{			
+	SetBit(SPI_PORT_DDR, SPI_PORT_BIT_SS);		// Настроить выводы DDRB на выход (SS, MOSI, SCK)
+ 1a2:	22 9a       	sbi	0x04, 2	; 4
+	SetBit(SPI_PORT_DDR, SPI_PORT_BIT_MOSI);
+ 1a4:	23 9a       	sbi	0x04, 3	; 4
+	SetBit(SPI_PORT_DDR, SPI_PORT_BIT_SCK);
+ 1a6:	25 9a       	sbi	0x04, 5	; 4
+	ClearBit(SPI_PORT_DDR, SPI_PORT_BIT_MISO);	// MISO На вход
+ 1a8:	24 98       	cbi	0x04, 4	; 4
+	SetBit(SPCR, MSTR);							// Режим мастер, F=Fosc/4
+ 1aa:	8c b5       	in	r24, 0x2c	; 44
+ 1ac:	80 61       	ori	r24, 0x10	; 16
+ 1ae:	8c bd       	out	0x2c, r24	; 44
+	SetBit(SPCR, CPOL);							// Импульсы отр. полярности
+ 1b0:	8c b5       	in	r24, 0x2c	; 44
+ 1b2:	88 60       	ori	r24, 0x08	; 8
+ 1b4:	8c bd       	out	0x2c, r24	; 44
+	SetBit(SPCR, CPHA);							// Обработка по заднему фронту
+ 1b6:	8c b5       	in	r24, 0x2c	; 44
+ 1b8:	84 60       	ori	r24, 0x04	; 4
+ 1ba:	8c bd       	out	0x2c, r24	; 44
+	SetBit(SPCR, SPE);							// Включить SPI
+ 1bc:	8c b5       	in	r24, 0x2c	; 44
+ 1be:	80 64       	ori	r24, 0x40	; 64
+ 1c0:	8c bd       	out	0x2c, r24	; 44
+	SetBit(SPI_PORT,SPI_PORT_BIT_SS);			// SS на 1
+ 1c2:	2a 9a       	sbi	0x05, 2	; 5
+}
+ 1c4:	08 95       	ret
+
+000001c6 <SpiReadByte>:
+
+u8 SpiReadByte(u8 byt)		
+{
+	u8 res;								//	Переменная для результата
+	ClearBit(SPI_PORT,SPI_PORT_BIT_SS);	//	SS в 0
+ 1c6:	2a 98       	cbi	0x05, 2	; 5
+	SPDR = byt;							//	Отправить байт		
+ 1c8:	8e bd       	out	0x2e, r24	; 46
+	while(BitIsClear(SPSR, SPIF))		//	Ждем завршения отправки
+ 1ca:	0d b4       	in	r0, 0x2d	; 45
+ 1cc:	07 fe       	sbrs	r0, 7
+ 1ce:	fd cf       	rjmp	.-6      	; 0x1ca <SpiReadByte+0x4>
+	{};
+	res = SPDR;							//	Фиксируем принятый байт
+ 1d0:	8e b5       	in	r24, 0x2e	; 46
+	SetBit(SPI_PORT,SPI_PORT_BIT_SS);	//	SS в 1
+ 1d2:	2a 9a       	sbi	0x05, 2	; 5
+	return res;							//	Возвращаем байт данных
+};
+ 1d4:	08 95       	ret
+
+000001d6 <Ad7792Reset>:
+
+void Ad7792Reset(void)				
+{
+	SpiCode = SpiReadByte(0xFF);	//	Посылаем 32 клока
+ 1d6:	8f ef       	ldi	r24, 0xFF	; 255
+ 1d8:	f6 df       	rcall	.-20     	; 0x1c6 <SpiReadByte>
+ 1da:	80 93 51 01 	sts	0x0151, r24
+	SpiCode = SpiReadByte(0xFF);
+ 1de:	8f ef       	ldi	r24, 0xFF	; 255
+ 1e0:	f2 df       	rcall	.-28     	; 0x1c6 <SpiReadByte>
+ 1e2:	80 93 51 01 	sts	0x0151, r24
+	SpiCode = SpiReadByte(0xFF);
+ 1e6:	8f ef       	ldi	r24, 0xFF	; 255
+ 1e8:	ee df       	rcall	.-36     	; 0x1c6 <SpiReadByte>
+ 1ea:	80 93 51 01 	sts	0x0151, r24
+	SpiCode = SpiReadByte(0xFF);
+ 1ee:	8f ef       	ldi	r24, 0xFF	; 255
+ 1f0:	ea df       	rcall	.-44     	; 0x1c6 <SpiReadByte>
+ 1f2:	80 93 51 01 	sts	0x0151, r24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1f6:	83 ec       	ldi	r24, 0xC3	; 195
+ 1f8:	99 e0       	ldi	r25, 0x09	; 9
+ 1fa:	01 97       	sbiw	r24, 0x01	; 1
+ 1fc:	f1 f7       	brne	.-4      	; 0x1fa <Ad7792Reset+0x24>
+ 1fe:	00 c0       	rjmp	.+0      	; 0x200 <Ad7792Reset+0x2a>
+ 200:	00 00       	nop
+	_delay_ms(10);					//	Пауза для перезагрузки АЦП
+};
+ 202:	08 95       	ret
+
+00000204 <Ad7792SetInput>:
+
+void Ad7792SetInput(u8 gn, u8 ch)					
+{
+ 204:	cf 93       	push	r28
+ 206:	df 93       	push	r29
+ 208:	d8 2f       	mov	r29, r24
+ 20a:	c6 2f       	mov	r28, r22
+	SpiCode = SpiReadByte(AD7792_CONF_REG); // Заходим в CONFIGURATION регистр
+ 20c:	80 e1       	ldi	r24, 0x10	; 16
+ 20e:	db df       	rcall	.-74     	; 0x1c6 <SpiReadByte>
+ 210:	80 93 51 01 	sts	0x0151, r24
+	SpiCode = SpiReadByte(gn); 				// Старший байт - Кэф, биполярный/униполярный режим
+ 214:	8d 2f       	mov	r24, r29
+ 216:	d7 df       	rcall	.-82     	; 0x1c6 <SpiReadByte>
+ 218:	80 93 51 01 	sts	0x0151, r24
+	SpiCode = SpiReadByte(ch); 				// Младший байт - внутренний/ внешний ИОН, канал
+ 21c:	8c 2f       	mov	r24, r28
+ 21e:	d3 df       	rcall	.-90     	; 0x1c6 <SpiReadByte>
+ 220:	80 93 51 01 	sts	0x0151, r24
+};
+ 224:	df 91       	pop	r29
+ 226:	cf 91       	pop	r28
+ 228:	08 95       	ret
+
+0000022a <Ad7792Calibration>:
+
+void Ad7792Calibration(void)					
+{
+	SpiCode = SpiReadByte(AD7792_MODE_REG);			//	Заходим в Mode регистр
+ 22a:	88 e0       	ldi	r24, 0x08	; 8
+ 22c:	cc df       	rcall	.-104    	; 0x1c6 <SpiReadByte>
+ 22e:	80 93 51 01 	sts	0x0151, r24
+	SpiCode = SpiReadByte(0x80);					//	Выбераем Offset калибровку
+ 232:	80 e8       	ldi	r24, 0x80	; 128
+ 234:	c8 df       	rcall	.-112    	; 0x1c6 <SpiReadByte>
+ 236:	80 93 51 01 	sts	0x0151, r24
+	SpiCode = SpiReadByte(0x01);					//	Частота 470 Гц							
+ 23a:	81 e0       	ldi	r24, 0x01	; 1
+ 23c:	c4 df       	rcall	.-120    	; 0x1c6 <SpiReadByte>
+ 23e:	80 93 51 01 	sts	0x0151, r24
+	while(BitIsSet(SPI_PORT, SPI_PORT_BIT_MISO))	//	Ждем конца калибровки
+ 242:	2c 99       	sbic	0x05, 4	; 5
+ 244:	fe cf       	rjmp	.-4      	; 0x242 <Ad7792Calibration+0x18>
+	{};
+	SpiCode = SpiReadByte(AD7792_MODE_REG);	 
+ 246:	88 e0       	ldi	r24, 0x08	; 8
+ 248:	be df       	rcall	.-132    	; 0x1c6 <SpiReadByte>
+ 24a:	80 93 51 01 	sts	0x0151, r24
+	SpiCode = SpiReadByte(0xA0);					//	Выбераем FullScale калибровку
+ 24e:	80 ea       	ldi	r24, 0xA0	; 160
+ 250:	ba df       	rcall	.-140    	; 0x1c6 <SpiReadByte>
+ 252:	80 93 51 01 	sts	0x0151, r24
+	SpiCode = SpiReadByte(0x01);					//	Частота 470 Гц			                   
+ 256:	81 e0       	ldi	r24, 0x01	; 1
+ 258:	b6 df       	rcall	.-148    	; 0x1c6 <SpiReadByte>
+ 25a:	80 93 51 01 	sts	0x0151, r24
+	while(BitIsSet(SPI_PORT, SPI_PORT_BIT_MISO))	//	Ждем конца калибровки		
+ 25e:	2c 99       	sbic	0x05, 4	; 5
+ 260:	fe cf       	rjmp	.-4      	; 0x25e <Ad7792Calibration+0x34>
+	{};
+};
+ 262:	08 95       	ret
+
+00000264 <Ad7792SetModeOfConversion>:
+
+void Ad7792SetModeOfConversion(void)				
+{
+	SpiCode = SpiReadByte(AD7792_MODE_REG);	//	Заходим в Mode регистр
+ 264:	88 e0       	ldi	r24, 0x08	; 8
+ 266:	af df       	rcall	.-162    	; 0x1c6 <SpiReadByte>
+ 268:	80 93 51 01 	sts	0x0151, r24
+	SpiCode = SpiReadByte(0x00);	        // Старший байт - Режим непр. преобразования
+ 26c:	80 e0       	ldi	r24, 0x00	; 0
+ 26e:	ab df       	rcall	.-170    	; 0x1c6 <SpiReadByte>
+ 270:	80 93 51 01 	sts	0x0151, r24
+	SpiCode = SpiReadByte(0x01);			// Младший байт - Частота преоб-я 470 Гц
+ 274:	81 e0       	ldi	r24, 0x01	; 1
+ 276:	a7 df       	rcall	.-178    	; 0x1c6 <SpiReadByte>
+ 278:	80 93 51 01 	sts	0x0151, r24
+};
+ 27c:	08 95       	ret
+
+0000027e <Ad7792GetData>:
+
+u16 Ad7792GetData(void)				
+{
+ 27e:	cf 93       	push	r28
+	u16 b3;				            // Переменная для хранения результата
+	u16 b1;				            // Переменная для хранения старшего байта
+	u8 b2;				            // Переменная для хранения младшего байта
+	
+	while(BitIsSet(SPI_PORT, SPI_PORT_BIT_MISO));	// Ждем когда данные подготовятся
+ 280:	2c 99       	sbic	0x05, 4	; 5
+ 282:	fe cf       	rjmp	.-4      	; 0x280 <Ad7792GetData+0x2>
+	SpiCode = SpiReadByte(0x58);					// Заходим в DATA REG
+ 284:	88 e5       	ldi	r24, 0x58	; 88
+ 286:	9f df       	rcall	.-194    	; 0x1c6 <SpiReadByte>
+ 288:	80 93 51 01 	sts	0x0151, r24
+	b1 = SpiReadByte(0xFF);							// Получаем старший байт данных
+ 28c:	8f ef       	ldi	r24, 0xFF	; 255
+ 28e:	9b df       	rcall	.-202    	; 0x1c6 <SpiReadByte>
+ 290:	c8 2f       	mov	r28, r24
+	b2 = SpiReadByte(0xFF);							// Младший байт данных
+ 292:	8f ef       	ldi	r24, 0xFF	; 255
+ 294:	98 df       	rcall	.-208    	; 0x1c6 <SpiReadByte>
+	b3 = (b2 | (b1 << 8));							// Формируем байт данных
+ 296:	3c 2f       	mov	r19, r28
+ 298:	20 e0       	ldi	r18, 0x00	; 0
+ 29a:	90 e0       	ldi	r25, 0x00	; 0
+ 29c:	28 2b       	or	r18, r24
+ 29e:	39 2b       	or	r19, r25
+	return b3;										// Отправь данные
+};
+ 2a0:	82 2f       	mov	r24, r18
+ 2a2:	93 2f       	mov	r25, r19
+ 2a4:	cf 91       	pop	r28
+ 2a6:	08 95       	ret
+
+000002a8 <GetAdcCode>:
+	Voltage_uV_Dc = (Voltage_uV_Dc / RangeDivDc[CurrentRange]); // Получаем напр. в мкВ		(Пример 123100 мкВ)
+	
+};
+
+u16 GetAdcCode(u8 nmbr) 
+{ 
+ 2a8:	cf 92       	push	r12
+ 2aa:	df 92       	push	r13
+ 2ac:	ef 92       	push	r14
+ 2ae:	ff 92       	push	r15
+ 2b0:	cf 93       	push	r28
+ 2b2:	df 93       	push	r29
+ 2b4:	d8 2f       	mov	r29, r24
+	u32 res3; 
+	res3 = Ad7792GetData();
+ 2b6:	e3 df       	rcall	.-58     	; 0x27e <Ad7792GetData>
+ 2b8:	6c 01       	movw	r12, r24
+ 2ba:	ee 24       	eor	r14, r14
+ 2bc:	ff 24       	eor	r15, r15
+	for (u8 t = 1; t < nmbr; t++)
+ 2be:	d2 30       	cpi	r29, 0x02	; 2
+ 2c0:	78 f0       	brcs	.+30     	; 0x2e0 <GetAdcCode+0x38>
+ 2c2:	c1 e0       	ldi	r28, 0x01	; 1
+	{
+		res3 = (res3 + Ad7792GetData())/2;
+ 2c4:	dc df       	rcall	.-72     	; 0x27e <Ad7792GetData>
+ 2c6:	a0 e0       	ldi	r26, 0x00	; 0
+ 2c8:	b0 e0       	ldi	r27, 0x00	; 0
+ 2ca:	c8 0e       	add	r12, r24
+ 2cc:	d9 1e       	adc	r13, r25
+ 2ce:	ea 1e       	adc	r14, r26
+ 2d0:	fb 1e       	adc	r15, r27
+ 2d2:	f6 94       	lsr	r15
+ 2d4:	e7 94       	ror	r14
+ 2d6:	d7 94       	ror	r13
+ 2d8:	c7 94       	ror	r12
+
+u16 GetAdcCode(u8 nmbr) 
+{ 
+	u32 res3; 
+	res3 = Ad7792GetData();
+	for (u8 t = 1; t < nmbr; t++)
+ 2da:	cf 5f       	subi	r28, 0xFF	; 255
+ 2dc:	cd 17       	cp	r28, r29
+ 2de:	91 f7       	brne	.-28     	; 0x2c4 <GetAdcCode+0x1c>
+	{
+		res3 = (res3 + Ad7792GetData())/2;
+	}
+	return res3;
+};
+ 2e0:	8c 2d       	mov	r24, r12
+ 2e2:	9d 2d       	mov	r25, r13
+ 2e4:	df 91       	pop	r29
+ 2e6:	cf 91       	pop	r28
+ 2e8:	ff 90       	pop	r15
+ 2ea:	ef 90       	pop	r14
+ 2ec:	df 90       	pop	r13
+ 2ee:	cf 90       	pop	r12
+ 2f0:	08 95       	ret
+
+000002f2 <GetAdcVoltage_nV>:
+
+s32 GetAdcVoltage_nV (void) 
+{
+	s32 res;  
+	u16 u16_tmp;                                 
+	u16_tmp = GetAdcCode(NUMBER_OF_MEASURE);// Получили код АЦП
+ 2f2:	80 e1       	ldi	r24, 0x10	; 16
+ 2f4:	d9 df       	rcall	.-78     	; 0x2a8 <GetAdcCode>
+	res = (s32*)(u16_tmp - AdcCodeZero);	// Получили БП код
+ 2f6:	a0 e0       	ldi	r26, 0x00	; 0
+ 2f8:	b0 e0       	ldi	r27, 0x00	; 0
+ 2fa:	80 50       	subi	r24, 0x00	; 0
+ 2fc:	90 48       	sbci	r25, 0x80	; 128
+ 2fe:	a0 40       	sbci	r26, 0x00	; 0
+ 300:	b0 40       	sbci	r27, 0x00	; 0
+ 302:	9c 01       	movw	r18, r24
+ 304:	b9 01       	movw	r22, r18
+ 306:	88 27       	eor	r24, r24
+ 308:	77 fd       	sbrc	r23, 7
+ 30a:	80 95       	com	r24
+ 30c:	98 2f       	mov	r25, r24
+	res = res * AdcStep + AdcBias;			// Умножаем на шаг АЦП и добавляем смещение
+ 30e:	2a e7       	ldi	r18, 0x7A	; 122
+ 310:	3b e8       	ldi	r19, 0x8B	; 139
+ 312:	40 e0       	ldi	r20, 0x00	; 0
+ 314:	50 e0       	ldi	r21, 0x00	; 0
+ 316:	af d0       	rcall	.+350    	; 0x476 <__mulsi3>
+	return res;
+};
+ 318:	08 95       	ret
+
+0000031a <Measure>:
+		Comm(); 
+    };
+};
+
+void Measure (void)
+{
+ 31a:	cf 92       	push	r12
+ 31c:	df 92       	push	r13
+ 31e:	ef 92       	push	r14
+ 320:	ff 92       	push	r15
+ 322:	cf 93       	push	r28
+ 324:	df 93       	push	r29
+	CurrentRange = RANGE_LOW;                       // Установили наим. диапазон
+ 326:	10 92 48 01 	sts	0x0148, r1
+	SetRangeDc(CurrentRange);
+ 32a:	80 e0       	ldi	r24, 0x00	; 0
+ 32c:	9f de       	rcall	.-706    	; 0x6c <SetRangeDc>
+ 32e:	8f eb       	ldi	r24, 0xBF	; 191
+ 330:	94 ed       	ldi	r25, 0xD4	; 212
+ 332:	a1 e0       	ldi	r26, 0x01	; 1
+ 334:	81 50       	subi	r24, 0x01	; 1
+ 336:	90 40       	sbci	r25, 0x00	; 0
+ 338:	a0 40       	sbci	r26, 0x00	; 0
+ 33a:	e1 f7       	brne	.-8      	; 0x334 <Measure+0x1a>
+ 33c:	00 c0       	rjmp	.+0      	; 0x33e <Measure+0x24>
+ 33e:	00 00       	nop
+	_delay_ms(DELAY_AFTER_SET_RANGE);               // Избавляемся от инерционности 
+	AdcVoltage_nV_Dc = 0;								
+ 340:	10 92 4d 01 	sts	0x014D, r1
+ 344:	10 92 4e 01 	sts	0x014E, r1
+ 348:	10 92 4f 01 	sts	0x014F, r1
+ 34c:	10 92 50 01 	sts	0x0150, r1
+	AdcVoltage_nV_Dc = GetAdcVoltage_nV();             // Получили напр. в нВ
+ 350:	d0 df       	rcall	.-96     	; 0x2f2 <GetAdcVoltage_nV>
+ 352:	dc 01       	movw	r26, r24
+ 354:	cb 01       	movw	r24, r22
+ 356:	80 93 4d 01 	sts	0x014D, r24
+ 35a:	90 93 4e 01 	sts	0x014E, r25
+ 35e:	a0 93 4f 01 	sts	0x014F, r26
+ 362:	b0 93 50 01 	sts	0x0150, r27
+	while ((labs(AdcVoltage_nV_Dc)) > (AdcVoltage_nV_Max)) // Напр. на АЦП по модулю больше макс? 
+	{
+		if (CurrentRange > RANGE_MAX)
+		{
+			AdcVoltage_nV_Dc = AdcVoltage_nV_Max;
+ 366:	0f 2e       	mov	r0, r31
+ 368:	f0 e0       	ldi	r31, 0x00	; 0
+ 36a:	cf 2e       	mov	r12, r31
+ 36c:	f5 e6       	ldi	r31, 0x65	; 101
+ 36e:	df 2e       	mov	r13, r31
+ 370:	fd ec       	ldi	r31, 0xCD	; 205
+ 372:	ef 2e       	mov	r14, r31
+ 374:	fd e1       	ldi	r31, 0x1D	; 29
+ 376:	ff 2e       	mov	r15, r31
+ 378:	f0 2d       	mov	r31, r0
+	CurrentRange = RANGE_LOW;                       // Установили наим. диапазон
+	SetRangeDc(CurrentRange);
+	_delay_ms(DELAY_AFTER_SET_RANGE);               // Избавляемся от инерционности 
+	AdcVoltage_nV_Dc = 0;								
+	AdcVoltage_nV_Dc = GetAdcVoltage_nV();             // Получили напр. в нВ
+	while ((labs(AdcVoltage_nV_Dc)) > (AdcVoltage_nV_Max)) // Напр. на АЦП по модулю больше макс? 
+ 37a:	25 c0       	rjmp	.+74     	; 0x3c6 <Measure+0xac>
+	{
+		if (CurrentRange > RANGE_MAX)
+ 37c:	80 91 48 01 	lds	r24, 0x0148
+ 380:	85 30       	cpi	r24, 0x05	; 5
+ 382:	48 f0       	brcs	.+18     	; 0x396 <Measure+0x7c>
+		{
+			AdcVoltage_nV_Dc = AdcVoltage_nV_Max;
+ 384:	c0 92 4d 01 	sts	0x014D, r12
+ 388:	d0 92 4e 01 	sts	0x014E, r13
+ 38c:	e0 92 4f 01 	sts	0x014F, r14
+ 390:	f0 92 50 01 	sts	0x0150, r15
+ 394:	18 c0       	rjmp	.+48     	; 0x3c6 <Measure+0xac>
+		}
+		else
+		{
+			CurrentRange++;                     // Следующий диапазон
+ 396:	8f 5f       	subi	r24, 0xFF	; 255
+ 398:	80 93 48 01 	sts	0x0148, r24
+			SetRangeDc(CurrentRange);
+ 39c:	67 de       	rcall	.-818    	; 0x6c <SetRangeDc>
+ 39e:	8f eb       	ldi	r24, 0xBF	; 191
+ 3a0:	94 ed       	ldi	r25, 0xD4	; 212
+ 3a2:	a1 e0       	ldi	r26, 0x01	; 1
+ 3a4:	81 50       	subi	r24, 0x01	; 1
+ 3a6:	90 40       	sbci	r25, 0x00	; 0
+ 3a8:	a0 40       	sbci	r26, 0x00	; 0
+ 3aa:	e1 f7       	brne	.-8      	; 0x3a4 <Measure+0x8a>
+ 3ac:	00 c0       	rjmp	.+0      	; 0x3ae <Measure+0x94>
+ 3ae:	00 00       	nop
+			_delay_ms(DELAY_AFTER_SET_RANGE);   // Избавляемся от инерционности 
+			AdcVoltage_nV_Dc = GetAdcVoltage_nV();
+ 3b0:	a0 df       	rcall	.-192    	; 0x2f2 <GetAdcVoltage_nV>
+ 3b2:	dc 01       	movw	r26, r24
+ 3b4:	cb 01       	movw	r24, r22
+ 3b6:	80 93 4d 01 	sts	0x014D, r24
+ 3ba:	90 93 4e 01 	sts	0x014E, r25
+ 3be:	a0 93 4f 01 	sts	0x014F, r26
+ 3c2:	b0 93 50 01 	sts	0x0150, r27
+	CurrentRange = RANGE_LOW;                       // Установили наим. диапазон
+	SetRangeDc(CurrentRange);
+	_delay_ms(DELAY_AFTER_SET_RANGE);               // Избавляемся от инерционности 
+	AdcVoltage_nV_Dc = 0;								
+	AdcVoltage_nV_Dc = GetAdcVoltage_nV();             // Получили напр. в нВ
+	while ((labs(AdcVoltage_nV_Dc)) > (AdcVoltage_nV_Max)) // Напр. на АЦП по модулю больше макс? 
+ 3c6:	80 91 4d 01 	lds	r24, 0x014D
+ 3ca:	90 91 4e 01 	lds	r25, 0x014E
+ 3ce:	a0 91 4f 01 	lds	r26, 0x014F
+ 3d2:	b0 91 50 01 	lds	r27, 0x0150
+ 3d6:	ac 01       	movw	r20, r24
+ 3d8:	bd 01       	movw	r22, r26
+ 3da:	bb 23       	and	r27, r27
+ 3dc:	3c f4       	brge	.+14     	; 0x3ec <Measure+0xd2>
+ 3de:	44 27       	eor	r20, r20
+ 3e0:	55 27       	eor	r21, r21
+ 3e2:	ba 01       	movw	r22, r20
+ 3e4:	48 1b       	sub	r20, r24
+ 3e6:	59 0b       	sbc	r21, r25
+ 3e8:	6a 0b       	sbc	r22, r26
+ 3ea:	7b 0b       	sbc	r23, r27
+ 3ec:	41 30       	cpi	r20, 0x01	; 1
+ 3ee:	25 e6       	ldi	r18, 0x65	; 101
+ 3f0:	52 07       	cpc	r21, r18
+ 3f2:	2d ec       	ldi	r18, 0xCD	; 205
+ 3f4:	62 07       	cpc	r22, r18
+ 3f6:	2d e1       	ldi	r18, 0x1D	; 29
+ 3f8:	72 07       	cpc	r23, r18
+ 3fa:	0c f0       	brlt	.+2      	; 0x3fe <Measure+0xe4>
+ 3fc:	bf cf       	rjmp	.-130    	; 0x37c <Measure+0x62>
+			AdcVoltage_nV_Dc = GetAdcVoltage_nV();
+		};
+	};
+	Voltage_uV_Dc = 0;
+	Voltage_uV_Dc = AdcVoltage_nV_Dc / CommonDev;				// Получаем напр. в мВ		(Пример 123.1 мВ)
+	Voltage_uV_Dc = (Voltage_uV_Dc * RangeKefDc[CurrentRange]); // Умножаем на кэф делителя	(Пример 1231000)
+ 3fe:	c0 91 48 01 	lds	r28, 0x0148
+ 402:	d0 e0       	ldi	r29, 0x00	; 0
+			_delay_ms(DELAY_AFTER_SET_RANGE);   // Избавляемся от инерционности 
+			AdcVoltage_nV_Dc = GetAdcVoltage_nV();
+		};
+	};
+	Voltage_uV_Dc = 0;
+	Voltage_uV_Dc = AdcVoltage_nV_Dc / CommonDev;				// Получаем напр. в мВ		(Пример 123.1 мВ)
+ 404:	bc 01       	movw	r22, r24
+ 406:	cd 01       	movw	r24, r26
+ 408:	20 ea       	ldi	r18, 0xA0	; 160
+ 40a:	36 e8       	ldi	r19, 0x86	; 134
+ 40c:	41 e0       	ldi	r20, 0x01	; 1
+ 40e:	50 e0       	ldi	r21, 0x00	; 0
+ 410:	51 d0       	rcall	.+162    	; 0x4b4 <__divmodsi4>
+ 412:	69 01       	movw	r12, r18
+ 414:	7a 01       	movw	r14, r20
+	Voltage_uV_Dc = (Voltage_uV_Dc * RangeKefDc[CurrentRange]); // Умножаем на кэф делителя	(Пример 1231000)
+ 416:	cc 0f       	add	r28, r28
+ 418:	dd 1f       	adc	r29, r29
+ 41a:	cc 0f       	add	r28, r28
+ 41c:	dd 1f       	adc	r29, r29
+ 41e:	fe 01       	movw	r30, r28
+ 420:	e0 5f       	subi	r30, 0xF0	; 240
+ 422:	fe 4f       	sbci	r31, 0xFE	; 254
+ 424:	20 81       	ld	r18, Z
+ 426:	31 81       	ldd	r19, Z+1	; 0x01
+ 428:	42 81       	ldd	r20, Z+2	; 0x02
+ 42a:	53 81       	ldd	r21, Z+3	; 0x03
+ 42c:	c7 01       	movw	r24, r14
+ 42e:	b6 01       	movw	r22, r12
+ 430:	22 d0       	rcall	.+68     	; 0x476 <__mulsi3>
+	Voltage_uV_Dc = (Voltage_uV_Dc / RangeDivDc[CurrentRange]); // Получаем напр. в мкВ		(Пример 123100 мкВ)
+ 432:	cc 5d       	subi	r28, 0xDC	; 220
+ 434:	de 4f       	sbci	r29, 0xFE	; 254
+ 436:	28 81       	ld	r18, Y
+ 438:	39 81       	ldd	r19, Y+1	; 0x01
+ 43a:	4a 81       	ldd	r20, Y+2	; 0x02
+ 43c:	5b 81       	ldd	r21, Y+3	; 0x03
+ 43e:	3a d0       	rcall	.+116    	; 0x4b4 <__divmodsi4>
+ 440:	20 93 49 01 	sts	0x0149, r18
+ 444:	30 93 4a 01 	sts	0x014A, r19
+ 448:	40 93 4b 01 	sts	0x014B, r20
+ 44c:	50 93 4c 01 	sts	0x014C, r21
+	
+};
+ 450:	df 91       	pop	r29
+ 452:	cf 91       	pop	r28
+ 454:	ff 90       	pop	r15
+ 456:	ef 90       	pop	r14
+ 458:	df 90       	pop	r13
+ 45a:	cf 90       	pop	r12
+ 45c:	08 95       	ret
+
+0000045e <main>:
+﻿
+#include "DVM.h"
+
+int main(void)
+{
+	PortsInit();
+ 45e:	9d de       	rcall	.-710    	; 0x19a <PortsInit>
+	UartInit();
+ 460:	8e de       	rcall	.-740    	; 0x17e <UartInit>
+	SpiInitMaster();
+ 462:	9f de       	rcall	.-706    	; 0x1a2 <SpiInitMaster>
+	Ad7792Reset();
+ 464:	b8 de       	rcall	.-656    	; 0x1d6 <Ad7792Reset>
+	Ad7792SetInput(0x00, 0x91); // Кэф 1, биполярный режим, внутренний ИОН, 2-й канал
+ 466:	80 e0       	ldi	r24, 0x00	; 0
+ 468:	61 e9       	ldi	r22, 0x91	; 145
+ 46a:	cc de       	rcall	.-616    	; 0x204 <Ad7792SetInput>
+	Ad7792Calibration();
+ 46c:	de de       	rcall	.-580    	; 0x22a <Ad7792Calibration>
+	Ad7792SetModeOfConversion();
+ 46e:	fa de       	rcall	.-524    	; 0x264 <Ad7792SetModeOfConversion>
+    while(1)
+    {
+        Measure();
+ 470:	54 df       	rcall	.-344    	; 0x31a <Measure>
+		Comm(); 
+ 472:	69 de       	rcall	.-814    	; 0x146 <Comm>
+ 474:	fd cf       	rjmp	.-6      	; 0x470 <main+0x12>
+
+00000476 <__mulsi3>:
+ 476:	62 9f       	mul	r22, r18
+ 478:	d0 01       	movw	r26, r0
+ 47a:	73 9f       	mul	r23, r19
+ 47c:	f0 01       	movw	r30, r0
+ 47e:	82 9f       	mul	r24, r18
+ 480:	e0 0d       	add	r30, r0
+ 482:	f1 1d       	adc	r31, r1
+ 484:	64 9f       	mul	r22, r20
+ 486:	e0 0d       	add	r30, r0
+ 488:	f1 1d       	adc	r31, r1
+ 48a:	92 9f       	mul	r25, r18
+ 48c:	f0 0d       	add	r31, r0
+ 48e:	83 9f       	mul	r24, r19
+ 490:	f0 0d       	add	r31, r0
+ 492:	74 9f       	mul	r23, r20
+ 494:	f0 0d       	add	r31, r0
+ 496:	65 9f       	mul	r22, r21
+ 498:	f0 0d       	add	r31, r0
+ 49a:	99 27       	eor	r25, r25
+ 49c:	72 9f       	mul	r23, r18
+ 49e:	b0 0d       	add	r27, r0
+ 4a0:	e1 1d       	adc	r30, r1
+ 4a2:	f9 1f       	adc	r31, r25
+ 4a4:	63 9f       	mul	r22, r19
+ 4a6:	b0 0d       	add	r27, r0
+ 4a8:	e1 1d       	adc	r30, r1
+ 4aa:	f9 1f       	adc	r31, r25
+ 4ac:	bd 01       	movw	r22, r26
+ 4ae:	cf 01       	movw	r24, r30
+ 4b0:	11 24       	eor	r1, r1
+ 4b2:	08 95       	ret
+
+000004b4 <__divmodsi4>:
+ 4b4:	97 fb       	bst	r25, 7
+ 4b6:	09 2e       	mov	r0, r25
+ 4b8:	05 26       	eor	r0, r21
+ 4ba:	0e d0       	rcall	.+28     	; 0x4d8 <__divmodsi4_neg1>
+ 4bc:	57 fd       	sbrc	r21, 7
+ 4be:	04 d0       	rcall	.+8      	; 0x4c8 <__divmodsi4_neg2>
+ 4c0:	14 d0       	rcall	.+40     	; 0x4ea <__udivmodsi4>
+ 4c2:	0a d0       	rcall	.+20     	; 0x4d8 <__divmodsi4_neg1>
+ 4c4:	00 1c       	adc	r0, r0
+ 4c6:	38 f4       	brcc	.+14     	; 0x4d6 <__divmodsi4_exit>
+
+000004c8 <__divmodsi4_neg2>:
+ 4c8:	50 95       	com	r21
+ 4ca:	40 95       	com	r20
+ 4cc:	30 95       	com	r19
+ 4ce:	21 95       	neg	r18
+ 4d0:	3f 4f       	sbci	r19, 0xFF	; 255
+ 4d2:	4f 4f       	sbci	r20, 0xFF	; 255
+ 4d4:	5f 4f       	sbci	r21, 0xFF	; 255
+
+000004d6 <__divmodsi4_exit>:
+ 4d6:	08 95       	ret
+
+000004d8 <__divmodsi4_neg1>:
+ 4d8:	f6 f7       	brtc	.-4      	; 0x4d6 <__divmodsi4_exit>
+ 4da:	90 95       	com	r25
+ 4dc:	80 95       	com	r24
+ 4de:	70 95       	com	r23
+ 4e0:	61 95       	neg	r22
+ 4e2:	7f 4f       	sbci	r23, 0xFF	; 255
+ 4e4:	8f 4f       	sbci	r24, 0xFF	; 255
+ 4e6:	9f 4f       	sbci	r25, 0xFF	; 255
+ 4e8:	08 95       	ret
+
+000004ea <__udivmodsi4>:
+ 4ea:	a1 e2       	ldi	r26, 0x21	; 33
+ 4ec:	1a 2e       	mov	r1, r26
+ 4ee:	aa 1b       	sub	r26, r26
+ 4f0:	bb 1b       	sub	r27, r27
+ 4f2:	fd 01       	movw	r30, r26
+ 4f4:	0d c0       	rjmp	.+26     	; 0x510 <__udivmodsi4_ep>
+
+000004f6 <__udivmodsi4_loop>:
+ 4f6:	aa 1f       	adc	r26, r26
+ 4f8:	bb 1f       	adc	r27, r27
+ 4fa:	ee 1f       	adc	r30, r30
+ 4fc:	ff 1f       	adc	r31, r31
+ 4fe:	a2 17       	cp	r26, r18
+ 500:	b3 07       	cpc	r27, r19
+ 502:	e4 07       	cpc	r30, r20
+ 504:	f5 07       	cpc	r31, r21
+ 506:	20 f0       	brcs	.+8      	; 0x510 <__udivmodsi4_ep>
+ 508:	a2 1b       	sub	r26, r18
+ 50a:	b3 0b       	sbc	r27, r19
+ 50c:	e4 0b       	sbc	r30, r20
+ 50e:	f5 0b       	sbc	r31, r21
+
+00000510 <__udivmodsi4_ep>:
+ 510:	66 1f       	adc	r22, r22
+ 512:	77 1f       	adc	r23, r23
+ 514:	88 1f       	adc	r24, r24
+ 516:	99 1f       	adc	r25, r25
+ 518:	1a 94       	dec	r1
+ 51a:	69 f7       	brne	.-38     	; 0x4f6 <__udivmodsi4_loop>
+ 51c:	60 95       	com	r22
+ 51e:	70 95       	com	r23
+ 520:	80 95       	com	r24
+ 522:	90 95       	com	r25
+ 524:	9b 01       	movw	r18, r22
+ 526:	ac 01       	movw	r20, r24
+ 528:	bd 01       	movw	r22, r26
+ 52a:	cf 01       	movw	r24, r30
+ 52c:	08 95       	ret
+
+0000052e <ltoa>:
+ 52e:	fa 01       	movw	r30, r20
+ 530:	cf 93       	push	r28
+ 532:	ff 93       	push	r31
+ 534:	ef 93       	push	r30
+ 536:	22 30       	cpi	r18, 0x02	; 2
+ 538:	3c f1       	brlt	.+78     	; 0x588 <ltoa+0x5a>
+ 53a:	25 32       	cpi	r18, 0x25	; 37
+ 53c:	2c f5       	brge	.+74     	; 0x588 <ltoa+0x5a>
+ 53e:	c2 2f       	mov	r28, r18
+ 540:	e8 94       	clt
+ 542:	ca 30       	cpi	r28, 0x0A	; 10
+ 544:	49 f4       	brne	.+18     	; 0x558 <ltoa+0x2a>
+ 546:	97 fb       	bst	r25, 7
+ 548:	3e f4       	brtc	.+14     	; 0x558 <ltoa+0x2a>
+ 54a:	90 95       	com	r25
+ 54c:	80 95       	com	r24
+ 54e:	70 95       	com	r23
+ 550:	61 95       	neg	r22
+ 552:	7f 4f       	sbci	r23, 0xFF	; 255
+ 554:	8f 4f       	sbci	r24, 0xFF	; 255
+ 556:	9f 4f       	sbci	r25, 0xFF	; 255
+ 558:	2c 2f       	mov	r18, r28
+ 55a:	33 27       	eor	r19, r19
+ 55c:	44 27       	eor	r20, r20
+ 55e:	55 27       	eor	r21, r21
+ 560:	ff 93       	push	r31
+ 562:	ef 93       	push	r30
+ 564:	c2 df       	rcall	.-124    	; 0x4ea <__udivmodsi4>
+ 566:	ef 91       	pop	r30
+ 568:	ff 91       	pop	r31
+ 56a:	60 5d       	subi	r22, 0xD0	; 208
+ 56c:	6a 33       	cpi	r22, 0x3A	; 58
+ 56e:	0c f0       	brlt	.+2      	; 0x572 <ltoa+0x44>
+ 570:	69 5d       	subi	r22, 0xD9	; 217
+ 572:	61 93       	st	Z+, r22
+ 574:	b9 01       	movw	r22, r18
+ 576:	ca 01       	movw	r24, r20
+ 578:	60 50       	subi	r22, 0x00	; 0
+ 57a:	70 40       	sbci	r23, 0x00	; 0
+ 57c:	80 40       	sbci	r24, 0x00	; 0
+ 57e:	90 40       	sbci	r25, 0x00	; 0
+ 580:	59 f7       	brne	.-42     	; 0x558 <ltoa+0x2a>
+ 582:	16 f4       	brtc	.+4      	; 0x588 <ltoa+0x5a>
+ 584:	cd e2       	ldi	r28, 0x2D	; 45
+ 586:	c1 93       	st	Z+, r28
+ 588:	10 82       	st	Z, r1
+ 58a:	8f 91       	pop	r24
+ 58c:	9f 91       	pop	r25
+ 58e:	cf 91       	pop	r28
+ 590:	00 c0       	rjmp	.+0      	; 0x592 <strrev>
+
+00000592 <strrev>:
+ 592:	dc 01       	movw	r26, r24
+ 594:	fc 01       	movw	r30, r24
+ 596:	67 2f       	mov	r22, r23
+ 598:	71 91       	ld	r23, Z+
+ 59a:	77 23       	and	r23, r23
+ 59c:	e1 f7       	brne	.-8      	; 0x596 <strrev+0x4>
+ 59e:	32 97       	sbiw	r30, 0x02	; 2
+ 5a0:	04 c0       	rjmp	.+8      	; 0x5aa <strrev+0x18>
+ 5a2:	7c 91       	ld	r23, X
+ 5a4:	6d 93       	st	X+, r22
+ 5a6:	70 83       	st	Z, r23
+ 5a8:	62 91       	ld	r22, -Z
+ 5aa:	ae 17       	cp	r26, r30
+ 5ac:	bf 07       	cpc	r27, r31
+ 5ae:	c8 f3       	brcs	.-14     	; 0x5a2 <strrev+0x10>
+ 5b0:	08 95       	ret
+
+000005b2 <_exit>:
+ 5b2:	f8 94       	cli
+
+000005b4 <__stop_program>:
+ 5b4:	ff cf       	rjmp	.-2      	; 0x5b4 <__stop_program>

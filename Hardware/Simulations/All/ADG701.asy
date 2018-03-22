@@ -1,0 +1,28 @@
+Version 4
+SymbolType BLOCK
+RECTANGLE Normal 64 48 -64 -49
+TEXT -40 -32 Left 2 D
+TEXT -39 1 Left 2 S
+TEXT -40 32 Left 2 GND
+TEXT -10 -32 Left 2 VDD
+TEXT 20 32 Left 2 IN
+WINDOW 0 0 -56 Bottom 2
+WINDOW 3 0 56 Top 2
+SYMATTR Prefix X
+SYMATTR Value ADG701
+SYMATTR ModelFile C:\Users\Artemka\YandexDisk\Work\Projects_2018\DVM\Tests\All\Library\adg701_adg701l.cir
+PIN -64 -32 LEFT 8
+PINATTR PinName 1
+PINATTR SpiceOrder 1
+PIN -64 0 LEFT 8
+PINATTR PinName 2
+PINATTR SpiceOrder 2
+PIN -64 32 LEFT 8
+PINATTR PinName 3
+PINATTR SpiceOrder 3
+PIN 64 -32 RIGHT 8
+PINATTR PinName 4
+PINATTR SpiceOrder 4
+PIN 64 32 RIGHT 8
+PINATTR PinName 5
+PINATTR SpiceOrder 5

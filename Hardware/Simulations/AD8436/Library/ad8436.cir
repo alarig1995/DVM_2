@@ -1,0 +1,109 @@
+
+* AD8436 SPICE Macro-model
+* Description: rms-DC Converter 
+* Generic Desc: Low Coat Low Power True RMS-dc Converter
+* Developed by: MDC PRB IAP ADI
+* Revision History: 10/11/12, - Rev. C - Updated to new header style 
+* 3.0 (09/2009)
+* Copyright 2012 by Analog Devices.
+* 
+* Refer to http://www.analog.com/Analog_Root/static/techSupport/designTools/spiceModels/license/spice_general.html for License Statement. Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+* BEGIN Notes:
+*
+* Not Modeled: Temperature effects
+*
+* Parameters modeled include:
+*
+* END Notes
+*
+* Node assignments
+*               No Connect
+*               |   AC input to RMS core
+*               |   |    Input Buffer Output 
+*               |   |     |      Input Buffer Minus input
+*               |   |     |       |     Input Buffer Positive Input
+*               |   |     |       |       |      Input Buffer Gain resistor
+*               |   |     |       |       |       |   No Connect
+*               |   |     |       |       |       |    |   OGND 
+*               |   |     |       |       |       |    |    |  OUTPUT of RMS core
+*               |   |     |       |       |       |    |    |   |  Negative Supply
+*               |   |     |       |       |       |    |    |   |   |   Half Supply Node
+*               |   |     |       |       |       |    |    |   |   |    |    Output Buffer Positive Input
+*               |   |     |       |       |       |    |    |   |   |    |     |      Output Buffer Minus Input 
+*               |   |     |       |       |       |    |    |   |   |    |     |       |      Output Buffer Output
+*               |   |     |       |       |       |    |    |   |   |    |     |       |       |      Output Buffer Power Supply
+*               |   |     |       |       |       |    |    |   |   |    |     |       |       |       |     Input Buffer Power Supply
+*               |   |     |       |       |       |    |    |   |   |    |     |       |       |       |      |   Positive Supply Rail
+*               |   |     |       |       |       |    |    |   |   |    |     |       |       |       |      |    |  Crest Factor Averaging
+*               |   |     |       |       |       |    |    |   |   |    |     |       |       |       |      |    |   |   Averaging Capacitor
+*               |   |     |       |       |       |    |    |   |   |    |     |       |       |       |      |    |   |    |  Summing amplifier input node
+*               |   |     |       |       |       |    |    |   |   |    |     |       |       |       |      |    |   |    |   | 
+.subckt AD8436 DNC RMS IBUFOUT IBUFINM IBUFINP IBUFGN DNC OGND OUT VEE IGND OBUFINP OBUFINM OBUFOUT OBUFVP IBUFVP VCC CCF CAVG SUM
+B2 0 OUT I=I(V16)
+R4 CCF 567 1k
+V16 567 0 0
+R6 CCF CAVG 4k
+R1 IGND VEE 100k
+R2 VCC IGND 100k
+R7 OUT OGND 16k
+G1 0 N013 N015 IBUFINM 1
+R5 N013 0 1e6
+V6 N015 IBUFINP 0.5m
+I4 IBUFINP 0 25p
+I3 IBUFINM 0 25p
+R8 IBUFOUT IBUFINM 10k
+R16 IBUFINM IBUFGN 10k
+C2 IBUFOUT IBUFINM 10p
+G2 0 N008 N011 N010 1
+R10 N008 0 1e6
+C3 N013 0 10.1e-8
+C4 N008 0 4.3e-7
+R11 OBUFINM N010 16k
+I6 OBUFINP 0 1.5n
+I5 OBUFINM 0 1.5n
+V9 N011 OBUFINP 100u
+V8 VCCX N009 1.9
+B3 IBUFVP VEE I=IF( (V(IBUFVP)-V(VEE) ) > 4.8, 160u, 0)
+B4 OBUFVP VEE I=IF( (V(OBUFVP)-V(VEE) ) > 4.8, 40u, 0)
+B5 VCC VEE I=IF( (V(VCC) - V(VEE) ) > 4.8, 325u, 0)
+E2 VCCX 0 VCC 0 1
+E3 VEEX 0 VEE 0 1
+G3 0 OBUFOUT N008 0 1
+R12 OBUFOUT 0 1
+C5 OBUFOUT 0 3.6e-7
+G4 0 IBUFOUT N013 0 1
+R13 IBUFOUT 0 1
+C6 IBUFOUT 0 8.3e-8
+R14 0 DNC 1e6
+D1 N013 N014 D
+D2 N012 N013 D
+V5 VCCX N014 .875
+V3 N012 VEEX .875
+R9 IBUFINM 0 10e12
+R15 IBUFINP 0 10e12
+D3 N008 N009 D
+D4 N007 N008 D
+V7 N007 VEEX 0.88
+G5 IGND N004 IGND SUM 1
+R17 N004 IGND 1e6
+*F1 0 N005 V12 1.00025
+F1 0 N005 V12 .500125
+C8 N004 IGND 2.62e-8
+E4 N002 IGND N004 IGND 1
+V12 SUM N001 0
+D5 N001 N002 D
+D6 N002 N006 D
+V13 N006 SUM 0
+*F2 0 N005 V13 .99975
+F2 0 N005 V13 .499875
+V11 N005 0 0
+B1 0 CAVG I=I(V11)**2/ABS(I(V16))
+R3 N003 RMS 8k
+V10 SUM N003 0
+.model D D
+
+.IC V(CAVG)=.1n
+
+.end
